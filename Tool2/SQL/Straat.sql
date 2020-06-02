@@ -1,12 +1,7 @@
 ﻿CREATE TABLE [dbo].[Straat]
 (
-	[straatID] INT NOT NULL PRIMARY KEY, 
-    [straatnaam] VARCHAR(50) NOT NULL, 
-	[graafId] INT NOT NULL, 
-    [straatLengte] FLOAT NOT NULL,
-
-
-
-	
-
+	[straatId] INT NOT NULL PRIMARY KEY,
+    [straatNaam] VARCHAR(50) NOT NULL, 
+	[lengteStraat] FLOAT NOT NULL,
+	[gemeenteId] INT REFERENCES Gemeente(gemeenteId) NOT NULL
 )
