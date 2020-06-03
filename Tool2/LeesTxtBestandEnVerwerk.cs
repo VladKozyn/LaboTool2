@@ -4,14 +4,13 @@ using System.Globalization;
 using System.IO;
 namespace Tool1
 {
-    public class LeesCsvBestand
+    public class LeesTxtBestandEnVerwerk
     {
-        public LeesCsvBestand()
+        public LeesTxtBestandEnVerwerk()
         {
         }
         //leest alle wegsegmenten en steeks ze in een list list
         public List<List<String>> wegsegmentenData()
-
         {
             List<List<String>> ListGesorteerdData = new List<List<string>>();
             using (StreamReader sr = new StreamReader("C:/Users/lieke/OneDrive/scool/prog 3/Labo/1/repository/WRdata.csv"))
