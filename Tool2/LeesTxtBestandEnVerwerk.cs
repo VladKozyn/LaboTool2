@@ -330,7 +330,7 @@ namespace Tool1
             {
                 int straatId = int.Parse(straatListText[i][0]);
                 string straatNaam = straatListText[i][1];
-                double lengteStraat = int.Parse(straatListText[i][2]);
+                double lengteStraat = double.Parse(straatListText[i][2]);
                 int gemeenteId = int.Parse(straatListText[i][3]);
 
                 listMetStraten.Add(new Straat(straatId, straatNaam, lengteStraat, gemeenteId));
