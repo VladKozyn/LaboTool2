@@ -181,7 +181,7 @@ namespace Tool2
         public void voegKnopenToe(List<Knoop> knoop)
         {
             SqlConnection connection = GetConnection();
-            string query = "INSERT INTO dbo.Knoop (knoopId;puntX;puntY;graafId) "
+            string query = "INSERT INTO dbo.Knoop (knoopId,puntX,puntY,graafId) "
                  + "VALUES(@knoopId,@puntX,@puntY,@graafId)";
             using (SqlCommand command = connection.CreateCommand())
             {
