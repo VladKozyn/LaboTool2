@@ -181,8 +181,8 @@ namespace Tool2
         public void voegKnopenToe(List<Knoop> knoop)
         {
             SqlConnection connection = GetConnection();
-            string query = "INSERT INTO dbo.Knoop (knoopId,puntX,puntY,graafId) "
-                 + "VALUES(@knoopId,@puntX,@puntY,@graafId)";
+            string query = "INSERT INTO dbo.Knoop (knoopId,puntX,puntY) "
+                 + "VALUES(@knoopId,@puntX,@puntY)";
             using (SqlCommand command = connection.CreateCommand())
             {
                 connection.Open();
@@ -194,7 +194,6 @@ namespace Tool2
                     command.Parameters.Add(new SqlParameter("@knoopId", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@puntX", SqlDbType.Float));
                     command.Parameters.Add(new SqlParameter("@puntY", SqlDbType.Float));
-                    command.Parameters.Add(new SqlParameter("@graafId", SqlDbType.Int));
 
                     foreach (Knoop k in knoop)
                     {
@@ -202,7 +201,80 @@ namespace Tool2
                         command.Parameters["@knoopId"].Value = k.knoopId;
                         command.Parameters["@puntX"].Value = k.puntX;
                         command.Parameters["@puntY"].Value = k.puntY;
+                        command.ExecuteNonQuery();
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public void voegKnopen_GravenToe(List<Knoop> knoop)
+        {
+            SqlConnection connection = GetConnection();
+            string query = "INSERT INTO dbo.Graaf_Knoop (graafId,knoopId) "
+                 + "VALUES(@graafId,@knoopId)";
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+                try
+                {
+                    command.CommandText = query;
+
+
+                    command.Parameters.Add(new SqlParameter("@graafId", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@knoopId", SqlDbType.Int));
+
+                    foreach (Knoop k in knoop)
+                    {
+
                         command.Parameters["@graafId"].Value = k.graafId;
+                        command.Parameters["@knoopId"].Value = k.knoopId;
+
+                        command.ExecuteNonQuery();
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+        public void voegKnoop_SegmentToe(List<Segment> segment)
+        {
+            SqlConnection connection = GetConnection();
+            string query = "INSERT INTO dbo.Knoop_Segment (knoopId,segmentId) "
+                 + "VALUES(@knoopId,@segmentId)";
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                connection.Open();
+                try
+                {
+                    command.CommandText = query;
+
+
+                    command.Parameters.Add(new SqlParameter("@knoopId", SqlDbType.Int));
+                    command.Parameters.Add(new SqlParameter("@segmentId", SqlDbType.Int));
+
+                    foreach (Segment s in segment)
+                    {
+
+                        command.Parameters["@knoopId"].Value = s.knoopId;
+                        command.Parameters["@segmentId"].Value = s.segmentId;
+
                         command.ExecuteNonQuery();
                     }
 
@@ -221,8 +293,8 @@ namespace Tool2
         public void voegSegmentenToe(List<Segment> segment)
         {
             SqlConnection connection = GetConnection();
-            string query = "INSERT INTO dbo.Segment (segmentId,beginKnoop,eindKnoop,knoopId) "
-                 + "VALUES(@segmentId,@beginKnoop,@eindKnoop,@knoopId)";
+            string query = "INSERT INTO dbo.Segment (segmentId,beginKnoop,eindKnoop) "
+                 + "VALUES(@segmentId,@beginKnoop,@eindKnoop)";
             using (SqlCommand command = connection.CreateCommand())
             {
                 connection.Open();
@@ -234,7 +306,6 @@ namespace Tool2
                     command.Parameters.Add(new SqlParameter("@segmentId", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@beginKnoop", SqlDbType.Int));
                     command.Parameters.Add(new SqlParameter("@eindKnoop", SqlDbType.Int));
-                    command.Parameters.Add(new SqlParameter("@knoopId", SqlDbType.Int));
 
                     foreach (Segment s in segment)
                     {
@@ -242,7 +313,6 @@ namespace Tool2
                         command.Parameters["@segmentId"].Value = s.segmentId;
                         command.Parameters["@beginKnoop"].Value = s.beginKnoop;
                         command.Parameters["@eindKnoop"].Value = s.eindKnoop;
-                        command.Parameters["@knoopId"].Value = s.knoopId;
                         command.ExecuteNonQuery();
                     }
 
