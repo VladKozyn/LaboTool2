@@ -285,7 +285,7 @@ namespace Tool1
                 double puntX = double.Parse(puntenListText[i][0]);
                 double puntY = double.Parse(puntenListText[i][1]);
                 int segmentId = int.Parse(puntenListText[i][2]);
-
+                
                 listMetWegsegmenten.Add(new Punt(puntX, puntY, segmentId));
             }
             return listMetWegsegmenten;
